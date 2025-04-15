@@ -2,10 +2,12 @@ import { useState } from "react";
 import { EditOutlined } from "@ant-design/icons";
 import Input from "./Input";
 
-const UserBubble = () => {
-  const [message, setMessage] = useState<string>(
-    "Preline UI Figma is the largest free design system for Figma..."
-  );
+type UserBubbleProps = {
+  content: string;
+};
+
+const UserBubble: React.FC<UserBubbleProps> = ({ content }) => {
+  const [message, setMessage] = useState<string>(content);
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const handleEditClick = () => {
@@ -19,14 +21,12 @@ const UserBubble = () => {
 
   const handleCancel = () => {
     setIsEditing(false);
-    setMessage(
-      "Preline UI Figma is the largest free design system for Figma..."
-    );
+    setMessage(content);
   };
 
   return (
     <li className="group max-w-4xl py-2 px-4 sm:px-6 lg:px-8 mx-auto my-10 flex gap-x-2 sm:gap-x-4">
-      <div className="w-10  sm:w-12 h-12 flex items-center justify-center rounded-full bg-info text-white">
+      <div className="w-10 sm:w-12 h-12 flex items-center justify-center rounded-full bg-info text-white">
         <span className="text-md sm:text-lg font-semibold">You</span>
       </div>
 
@@ -45,7 +45,6 @@ const UserBubble = () => {
           )}
         </div>
 
-        {/* Edit button */}
         {!isEditing && (
           <div className="hidden group-hover:flex">
             <button

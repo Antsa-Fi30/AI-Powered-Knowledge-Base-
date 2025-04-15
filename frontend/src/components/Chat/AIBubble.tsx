@@ -1,6 +1,11 @@
 import { CopyOutlined } from "@ant-design/icons";
 
-const AIBubble = () => {
+type AIBubbleProps = {
+  content: string;
+  list?: string[];
+};
+
+const AIBubble: React.FC<AIBubbleProps> = ({ content, list = [] }) => {
   const handleCopy = () => {
     console.log("Copy to clipboard : ");
   };
@@ -18,37 +23,24 @@ const AIBubble = () => {
         {/* Bubble */}
         <div className="grow max-w-[90%] md:max-w-2xl w-full space-y-3">
           <div className="space-y-3">
-            <p className="text-sm text-gray-800 dark:text-white">
-              Preline UI Figma is the largest free design system for Figma,
-              crafted with Tailwind CSS styles and Preline UI components with
-              extra top-notch additions.
-            </p>
-            <div className="space-y-1.5">
-              <p className="text-sm text-gray-800 dark:text-white">
-                With the features like:
-              </p>
-              <ul className="list-disc list-outside space-y-1.5 ps-3.5">
-                <li className="text-sm text-gray-800 dark:text-white">
-                  12-column Grid System
-                </li>
-
-                <li className="text-sm text-gray-800 dark:text-white">
-                  Easily find UI elements
-                </li>
-
-                <li className="text-sm text-gray-800 dark:text-white">
-                  Variants and Properties
-                </li>
-
-                <li className="text-sm text-gray-800 dark:text-white">
-                  Tailwind CSS Color styles
-                </li>
-
-                <li className="text-sm text-gray-800 dark:text-white">
-                  Auto layout and constraints
-                </li>
-              </ul>
-            </div>
+            <p className="text-sm text-gray-800 dark:text-white">{content}</p>
+            {list.length > 0 && (
+              <div className="space-y-1.5">
+                <p className="text-sm text-gray-800 dark:text-white">
+                  With the features like:
+                </p>
+                <ul className="list-disc list-outside space-y-1.5 ps-3.5">
+                  {list.map((item, index) => (
+                    <li
+                      key={index}
+                      className="text-sm text-gray-800 dark:text-white"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
           <div>
             <div className="sm:flex sm:justify-between">

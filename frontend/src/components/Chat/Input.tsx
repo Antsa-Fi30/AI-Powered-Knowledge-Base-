@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { SendOutlined } from "@ant-design/icons";
+import clsx from "clsx";
 
 type InputProps = {
   message: string;
@@ -71,9 +72,10 @@ const Input: React.FC<InputProps> = ({
           value={message}
           onChange={handleTexts}
           onKeyDown={handleKeyDown}
-          className={`textarea textarea-info w-full pr-16 resize-none overflow-hidden max-h-[200px] overflow-y-auto ${
-            isEditing && "pb-16"
-          }`}
+          className={clsx(
+            "textarea textarea-info w-full pr-16 resize-none overflow-hidden max-h-[200px] overflow-y-auto",
+            { "pb-16": isEditing }
+          )}
           rows={5}
         ></textarea>
 
